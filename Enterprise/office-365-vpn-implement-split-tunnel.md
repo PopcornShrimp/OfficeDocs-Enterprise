@@ -1,5 +1,5 @@
 ---
-title: "Implementing VPN split tunnelling for Office 365"
+title: "Implementing VPN split tunneling for Office 365"
 ms.author: kvice
 author: kelleyvice-msft
 manager: laurawi
@@ -16,19 +16,19 @@ ms.collection:
 - remotework
 f1.keywords:
 - NOCSH
-description: "How to implement VPN split tunnelling for Office 365"
+description: "How to implement VPN split tunneling for Office 365"
 ---
 
-# Implementing VPN split tunnelling for Office 365
+# Implementing VPN split tunneling for Office 365
 
 >[!NOTE]
 >This topic is part of a set of topics that address Office 365 optimization for remote users.
->- For an overview of using VPN split tunnelling to optimize Office 365 connectivity for remote users, see [Overview: VPN split tunnelling for Office 365](office-365-vpn-split-tunnel.md).
+>- For an overview of using VPN split tunneling to optimize Office 365 connectivity for remote users, see [Overview: VPN split tunneling for Office 365](office-365-vpn-split-tunnel.md).
 >- For information about optimizing Office 365 worldwide tenant performance for users in China, see [Office 365 performance optimization for China users](office-365-networking-china.md).
 
 For many years enterprises have been using VPNs to support remote experiences for their users. Whilst core workloads remained on-premises, a VPN from the remote client routed through a datacenter on the corporate network was the primary method for remote users to access corporate resources. To safeguard these connections, enterprises build layers of network security solutions along the VPN paths. This was done to protect internal infrastructure as well as to safeguard mobile browsing of external web sites by rerouting traffic into the VPN and then out through the on-premises Internet perimeter. VPNs, network perimeters and associated security infrastructure were often purpose built and scaled for a defined volume of traffic, typically with the majority of connectivity being initiated from within the corporate network, and most of it staying withing the internal network boundaries.
 
-For quite some time, VPN models where all connections from the remote user device are routed back into the on-premises network (known as **forced tunnelling**) were largely sustainable as long as the concurrent scale of remote users was modest and the traffic volumes traversing VPN were low.  Some customers continued to use VPN force tunnelling as the status quo even after their applications moved from inside the corporate perimeter to public SaaS clouds, Office 365 being a prime example.
+For quite some time, VPN models where all connections from the remote user device are routed back into the on-premises network (known as **forced tunneling**) were largely sustainable as long as the concurrent scale of remote users was modest and the traffic volumes traversing VPN were low.  Some customers continued to use VPN force tunneling as the status quo even after their applications moved from inside the corporate perimeter to public SaaS clouds, Office 365 being a prime example.
 
 The use of forced tunneled VPNs for connecting to distributed and performance sensitive cloud applications is extremely suboptimal, but the negative impact of that may have been accepted by some enterprises so as to maintain the status quo from a security perspective. An example diagram of this scenario can be seen below:
 
@@ -74,7 +74,7 @@ The third model broadens the scope of model two as rather than just sending a sm
 
 ### 4. VPN selective Tunnel
 
-This model reverses the third model in that only traffic identified as having a corporate IP address is sent down the VPN tunnel and thus the Internet path is the default route for everything else. This model requires an organization to be well on the path to [Zero Trust](https://www.microsoft.com/security/zero-trust?rtc=1) in able to safely implement this model. It should be noted that this model or some variation thereof will likely become the necessary default over time as more and more services move away from the corporate network and into the cloud. Microsoft uses this model internally; you can find more information on Microsoft's implementation of VPN split tunnelling at [Running on VPN: How Microsoft is keeping its remote workforce connected](https://www.microsoft.com/itshowcase/blog/running-on-vpn-how-microsoft-is-keeping-its-remote-workforce-connected/?elevate-lv).
+This model reverses the third model in that only traffic identified as having a corporate IP address is sent down the VPN tunnel and thus the Internet path is the default route for everything else. This model requires an organization to be well on the path to [Zero Trust](https://www.microsoft.com/security/zero-trust?rtc=1) in able to safely implement this model. It should be noted that this model or some variation thereof will likely become the necessary default over time as more and more services move away from the corporate network and into the cloud. Microsoft uses this model internally; you can find more information on Microsoft's implementation of VPN split tunneling at [Running on VPN: How Microsoft is keeping its remote workforce connected](https://www.microsoft.com/itshowcase/blog/running-on-vpn-how-microsoft-is-keeping-its-remote-workforce-connected/?elevate-lv).
 
 ![Split Tunnel VPN model 4](media/vpn-split-tunnelling/vpn-model-4.png)
 
@@ -84,7 +84,7 @@ A more advanced version of model number two, whereby any internal services are p
 
 ![Split Tunnel VPN model 5](media/vpn-split-tunnelling/vpn-model-5.png)
 
-## Implement VPN split tunnelling
+## Implement VPN split tunneling
 
 In this section, you'll find the simple steps required to migrate your VPN client architecture from a _VPN forced tunnel_ to a _VPN forced tunnel with a small number of trusted exceptions_, [VPN split tunnel model #2](#2-vpn-forced-tunnel-with-a-small-number-of-trusted-exceptions) in the [Common VPN scenarios](#common-vpn-scenarios) section.
 
@@ -211,7 +211,7 @@ The VPN client should be configured so that traffic to the **Optimize** IPs are 
 
 ## Configuring and securing Teams media traffic
 
-Some administrators may require more detailed information on how call flows operate in Teams using a split tunnelling model and how connections are secured.
+Some administrators may require more detailed information on how call flows operate in Teams using a split tunneling model and how connections are secured.
 
 ### Configuration
 
@@ -251,7 +251,7 @@ Once the policy is in place, you should confirm it is working as expected. There
   tracert worldaz.tr.teams.microsoft.com
   ```
 
-  You should then see a path via the local ISP to this endpoint which should resolve to an IP in the Teams ranges we have configured for split tunnelling.
+  You should then see a path via the local ISP to this endpoint which should resolve to an IP in the Teams ranges we have configured for split tunneling.
 
 - Take a network capture using a tool such as Wireshark. Filter on UDP during a call and you should see traffic flowing to an IP in the Teams **Optimize** range. If the VPN tunnel is being used for this traffic, then the media traffic will not be visible in the trace.
 
@@ -261,7 +261,7 @@ If you need further data to troubleshoot, or are requesting assistance from Micr
 
 ## HOWTO guides for common VPN platforms
 
-This section provides links to detailed guides for implementing split tunnelling for Office 365 traffic from the most common partners in this space. We'll add additional guides as they become available.
+This section provides links to detailed guides for implementing split tunneling for Office 365 traffic from the most common partners in this space. We'll add additional guides as they become available.
 
 - **Windows 10 VPN client**: [Optimizing Office 365 traffic for remote workers with the native Windows 10 VPN client](https://docs.microsoft.com/windows/security/identity-protection/vpn/vpn-office-365-optimization)
 - **Cisco Anyconnect**: [Optimize Anyconnect Split Tunnel for Office365](https://www.cisco.com/c/en/us/support/docs/security/anyconnect-secure-mobility-client/215343-optimize-anyconnect-split-tunnel-for-off.html)
@@ -323,7 +323,7 @@ Port 80 is only used for things like redirect to a port 443 session, no customer
 
 ## Related topics
 
-[Overview: VPN split tunnelling for Office 365](office-365-vpn-split-tunnel.md)
+[Overview: VPN split tunneling for Office 365](office-365-vpn-split-tunnel.md)
 
 [Office 365 performance optimization for China users](office-365-networking-china.md)
 
